@@ -1,0 +1,1 @@
+<x-backend.text-input type="search" id="search" placeholder="{{ __('backend.press_command_dot_to_search') }}" class="w-full lg:w-80 !rounded-3xl bg-white dark:bg-base-100 border-[1px] dark:border-slate-700" wire:model.live.debounce.300ms="search" autocomplete="off"/>
