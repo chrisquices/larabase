@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Backend\Settings;
+namespace App\Livewire\Backend\Setting;
 
 use Livewire\Component;
 
@@ -24,7 +24,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('backend.livewire.settings.index');
+        return view('backend.livewire.setting.index');
     }
 
     public function changeActiveTab($tab)

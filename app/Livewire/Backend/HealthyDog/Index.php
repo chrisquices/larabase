@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Livewire\Backend\Permissions;
+namespace App\Livewire\Backend\HealthyDog;
 
 use App\Http\Traits\Backend\Livewire\IndexFunctions;
-use App\Models\Permission;
+use App\Models\HealthyDog;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
@@ -17,45 +17,43 @@ class Index extends Component
     public function mount()
     {
         $this->init();
-        $this->sortBy = 'category';
+        $this->sortBy = 'name';
     }
 
     public function render()
     {
-        $permissions = Permission::query()
+        $healthyDogs = HealthyDog::query()
             ->when($this->search, function ($query) {
                 return $query->where('name', 'like', '%' . $this->search . '%');
             })
             ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate($this->recordsPerPage);
 
-        return view('backend.livewire.permissions.index', compact('permissions'));
+        return view('backend.livewire.healthy-dog.index', compact('healthyDogs'));
     }
 
     public function delete($id)
     {
-        abort_if(Gate::denies('delete_permissions'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('delete_healthy_dogs'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         try {
-            Permission::destroy($id);
+            HealthyDog::destroy($id);
 
-            $this->dispatch('flash', icon: 'success', message: __('backend.permission_deleted_successfully'));
+            $this->dispatch('flash', icon: 'success', message: __('backend.healthy_dog_deleted_successfully'));
 
         } catch (QueryException $e) {
             $this->dispatch('flash', icon: 'error', message: __('backend.unknown_error_occurred'));
         }
-
-        $this->resetSelectedRecord();
     }
 
     public function deleteMany()
     {
-        abort_if(Gate::denies('delete_permissions'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('delete_healthy_dogs'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         try {
-            Permission::whereIn('id', $this->selectedRecords)->delete();
+            HealthyDog::whereIn('id', $this->selectedRecords)->delete();
 
-            $this->dispatch('flash', icon: 'success', message: __('backend.permissions_deleted_successfully'));
+            $this->dispatch('flash', icon: 'success', message: __('backend.healthy_dogs_deleted_successfully'));
 
         } catch (QueryException $e) {
             $this->dispatch('flash', icon: 'error', message: __('backend.unknown_error_occurred'));
@@ -63,4 +61,5 @@ class Index extends Component
 
         $this->resetSelectedRecords();
     }
+
 }

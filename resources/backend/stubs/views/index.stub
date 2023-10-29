@@ -1,0 +1,7 @@
+<x-backend.app-layout>
+
+    <x-slot name="title">{{ __('backend.{{resourcePluralSnake}}') }}</x-slot>
+
+    <livewire:backend.{{resourceSingularKebab}}.index/>
+
+</x-backend.app-layout>

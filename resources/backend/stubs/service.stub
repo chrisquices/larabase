@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Services\Backend;
+
+use App\Models\{{resource}};
+
+class {{resource}}Service
+{
+
+    public function store(array ${{resourceSingularCamel}}Data): {{resource}}
+    {
+        ${{resourceSingularCamel}} = {{resource}}::create([
+            'name' => ${{resourceSingularCamel}}Data['name'],
+        ]);
+
+        return ${{resourceSingularCamel}};
+    }
+
+    public function update(array ${{resourceSingularCamel}}Data, ${{resourceSingularCamel}}): {{resource}}
+    {
+        ${{resourceSingularCamel}}->update([
+            'name' => ${{resourceSingularCamel}}Data['name'] ?? ${{resourceSingularCamel}}->name,
+        ]);
+
+        return ${{resourceSingularCamel}};
+    }
+}

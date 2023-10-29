@@ -2,6 +2,6 @@
 
     <x-slot name="title">{{ __('backend.settings') }}</x-slot>
 
-    <livewire:backend.settings.index/>
+    <livewire:backend.setting.index/>
 
 </x-backend.app-layout>

@@ -2,6 +2,6 @@
 
     <x-slot name="title">{{ __('backend.users') }}</x-slot>
 
-    <livewire:backend.users.index/>
+    <livewire:backend.user.index/>
 
 </x-backend.app-layout>

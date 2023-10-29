@@ -2,36 +2,30 @@
 
 return [
     'access_denied' => 'Acceso denegado',
-
     'user'        => 'Usuario',
     'users'       => 'Usuarios',
     'role'        => 'Rol',
     'roles'       => 'Roles',
     'permission'  => 'Permiso',
     'permissions' => 'Permisos',
-
     'list_users'       => 'Listar Usuarios',
     'list_roles'       => 'Listar Roles',
     'list_permissions' => 'Listar Permisos',
-
     'create_user'        => 'Crear Usuario',
     'create_users'       => 'Crear Usuarios',
     'create_role'        => 'Crear Rol',
     'create_roles'       => 'Crear Roles',
     'create_permission'  => 'Crear Permiso',
     'create_permissions' => 'Crear Permisos',
-
     'user_details'       => 'Detalles del Usuario',
     'role_details'       => 'Detalles del Rol',
     'permission_details' => 'Detalles del Permiso',
-
     'view_user'        => 'Ver Usuario',
     'view_users'       => 'Ver Usuarios',
     'view_role'        => 'Ver Rol',
     'view_roles'       => 'Ver Roles',
     'view_permission'  => 'Ver Permiso',
     'view_permissions' => 'Ver Permisos',
-
     'update_profile'       => 'Actualizar Perfil',
     'update_profile_photo' => 'Actualizar Foto de Perfil',
     'update_password'      => 'Actualizar Contraseña',
@@ -41,39 +35,33 @@ return [
     'update_roles'         => 'Actualizar Roles',
     'update_permission'    => 'Actualizar Permiso',
     'update_permissions'   => 'Actualizar Permisos',
-
     'delete_user'        => 'Eliminar Usuario',
     'delete_users'       => 'Eliminar Usuarios',
     'delete_role'        => 'Eliminar Rol',
     'delete_roles'       => 'Eliminar Roles',
     'delete_permission'  => 'Eliminar Permiso',
     'delete_permissions' => 'Eliminar Permisos',
-
     'profile_updated_successfully'       => 'Perfil actualizado exitosamente',
     'profile_photo_updated_successfully' => 'Foto de perfil actualizada exitosamente',
     'password_updated_successfully'      => 'Contraseña actualizada exitosamente',
-
     'user_created_successfully'                           => 'Usuario creado exitosamente',
     'user_updated_successfully'                           => 'Usuario actualizado exitosamente',
     'user_deleted_successfully'                           => 'Usuario eliminado exitosamente',
     'users_deleted_successfully'                          => 'Usuarios eliminados exitosamente',
     'are_you_sure_you_want_to_delete_this_user?'          => '¿Estás seguro de que deseas eliminar este usuario?',
     'are_you_sure_you_want_to_delete_the_selected_users?' => '¿Estás seguro de que deseas eliminar los usuarios seleccionados?',
-
     'role_created_successfully'                           => 'Rol creado exitosamente',
     'role_updated_successfully'                           => 'Rol actualizado exitosamente',
     'role_deleted_successfully'                           => 'Rol eliminado exitosamente',
     'roles_deleted_successfully'                          => 'Roles eliminados exitosamente',
     'are_you_sure_you_want_to_delete_this_role?'          => '¿Estás seguro de que deseas eliminar este rol?',
     'are_you_sure_you_want_to_delete_the_selected_roles?' => '¿Estás seguro de que deseas eliminar los roles seleccionados?',
-
     'permission_created_successfully'                           => 'Permiso creado exitosamente',
     'permission_updated_successfully'                           => 'Permiso actualizado exitosamente',
     'permission_deleted_successfully'                           => 'Permiso eliminado exitosamente',
     'permissions_deleted_successfully'                          => 'Permisos eliminados exitosamente',
     'are_you_sure_you_want_to_delete_this_permission?'          => '¿Estás seguro de que deseas eliminar este permiso?',
     'are_you_sure_you_want_to_delete_the_selected_permissions?' => '¿Estás seguro de que deseas eliminar los permisos seleccionados?',
-
     'email_address'                                                   => 'Correo electrónico',
     'remember_me'                                                     => 'Recordarme',
     'yes'                                                             => 'Sí',

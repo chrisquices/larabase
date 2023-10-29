@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Http\Controllers\Backend;
+
+use App\Http\Requests\Backend\{{resource}}StoreRequest;
+use App\Http\Requests\Backend\{{resource}}UpdateRequest;
+use App\Models\{{resource}};
+use App\Services\Backend\{{resource}}Service;
+
+class {{resource}}Controller extends Controller
+{
+
+    public function index()
+    {
+        $this->authorize('list_{{resourcePluralSnake}}');
+
+        return view('backend.{{resourcePluralKebab}}.index');
+    }
+
+    public function create()
+    {
+        $this->authorize('create_{{resourcePluralSnake}}');
+
+        return view('backend.{{resourcePluralKebab}}.create');
+    }
+
+    public function store({{resource}}StoreRequest $request, {{resource}}Service ${{resourceSingularCamel}}Service)
+    {
+        $this->authorize('create_{{resourcePluralSnake}}');
+
+        ${{resourceSingularCamel}} = ${{resourceSingularCamel}}Service->store($request->validated());
+
+        session()->flash('success', __('backend.{{resourceSingularSnake}}_created_successfully'));
+
+        return to_route('backend.{{resourcePluralKebab}}.show', ${{resourceSingularCamel}});
+    }
+
+    public function show({{resource}} ${{resourceSingularCamel}})
+    {
+        $this->authorize('view_{{resourcePluralSnake}}');
+
+        return view('backend.{{resourcePluralKebab}}.show', compact('{{resourceSingularCamel}}'));
+    }
+
+    public function edit({{resource}} ${{resourceSingularCamel}})
+    {
+        $this->authorize('edit_{{resourcePluralSnake}}');
+
+        return view('backend.{{resourcePluralKebab}}.edit', compact('{{resourceSingularCamel}}'));
+    }
+
+    public function update({{resource}}UpdateRequest $request, {{resource}}Service ${{resourceSingularCamel}}Service, {{resource}} ${{resourceSingularCamel}})
+    {
+        $this->authorize('edit_{{resourcePluralSnake}}');
+
+        ${{resourceSingularCamel}} = ${{resourceSingularCamel}}Service->update($request->validated(), ${{resourceSingularCamel}});
+
+        session()->flash('success', __('backend.{{resourceSingularSnake}}_updated_successfully'));
+
+        return to_route('backend.{{resourcePluralKebab}}.show', ${{resourceSingularCamel}});
+    }
+
+}

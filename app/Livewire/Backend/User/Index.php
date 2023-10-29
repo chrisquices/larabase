@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Backend\Users;
+namespace App\Livewire\Backend\User;
 
 use App\Http\Traits\Backend\Livewire\IndexFunctions;
 use App\Models\User;
@@ -41,7 +41,7 @@ Index extends Component
             ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate($this->recordsPerPage);
 
-        return view('backend.livewire.users.index', compact('users'));
+        return view('backend.livewire.user.index', compact('users'));
     }
 
     public function delete($id)

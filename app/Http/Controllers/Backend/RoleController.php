@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests\Backend\RoleStoreRequest;
 use App\Http\Requests\Backend\RoleUpdateRequest;
-use App\Http\Requests\UserManagement\CategoryTypeStoreRequest;
-use App\Http\Requests\UserManagement\CategoryTypeUpdateRequest;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Services\Backend\RoleService;

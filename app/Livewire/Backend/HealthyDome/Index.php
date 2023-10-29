@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Livewire\Backend\Roles;
+namespace App\Livewire\Backend\HealthyDome;
 
 use App\Http\Traits\Backend\Livewire\IndexFunctions;
-use App\Models\Role;
+use App\Models\HealthyDome;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
@@ -22,24 +22,24 @@ class Index extends Component
 
     public function render()
     {
-        $roles = Role::query()
+        $healthyDomes = HealthyDome::query()
             ->when($this->search, function ($query) {
                 return $query->where('name', 'like', '%' . $this->search . '%');
             })
             ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate($this->recordsPerPage);
 
-        return view('backend.livewire.roles.index', compact('roles'));
+        return view('backend.livewire.healthy-dome.index', compact('healthyDomes'));
     }
 
     public function delete($id)
     {
-        abort_if(Gate::denies('delete_roles'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('delete_healthy_domes'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         try {
-            Role::destroy($id);
+            HealthyDome::destroy($id);
 
-            $this->dispatch('flash', icon: 'success', message: __('backend.role_deleted_successfully'));
+            $this->dispatch('flash', icon: 'success', message: __('backend.healthy_dome_deleted_successfully'));
 
         } catch (QueryException $e) {
             $this->dispatch('flash', icon: 'error', message: __('backend.unknown_error_occurred'));
@@ -48,12 +48,12 @@ class Index extends Component
 
     public function deleteMany()
     {
-        abort_if(Gate::denies('delete_roles'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('delete_healthy_domes'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         try {
-            Role::whereIn('id', $this->selectedRecords)->delete();
+            HealthyDome::whereIn('id', $this->selectedRecords)->delete();
 
-            $this->dispatch('flash', icon: 'success', message: __('backend.roles_deleted_successfully'));
+            $this->dispatch('flash', icon: 'success', message: __('backend.healthy_domes_deleted_successfully'));
 
         } catch (QueryException $e) {
             $this->dispatch('flash', icon: 'error', message: __('backend.unknown_error_occurred'));

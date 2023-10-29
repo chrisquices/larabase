@@ -2,6 +2,6 @@
 
     <x-slot name="title">{{ __('backend.roles') }}</x-slot>
 
-    <livewire:backend.roles.index/>
+    <livewire:backend.role.index/>
 
 </x-backend.app-layout>
