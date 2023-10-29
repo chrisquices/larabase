@@ -1,0 +1,46 @@
+<x-backend.app-layout>
+    <x-slot name="title">{{ __('backend.create_permission') }}</x-slot>
+
+    <x-backend.heading>
+        <x-backend.card.title>{{ __('backend.create_permission') }}</x-backend.card.title>
+    </x-backend.heading>
+
+    <form action="{{ route('backend.permissions.store') }}" method="POST" autocomplete="off">
+        @csrf
+
+        <x-backend.card class="!py-0">
+            <x-backend.form.divider>
+                <x-backend.form.row>
+                    <x-backend.text-label for="category">{{ __('backend.category') }}</x-backend.text-label>
+
+                    <x-slot name="input">
+                        <x-backend.text-input id="category" required/>
+                        <x-backend.input-error name="category"/>
+                    </x-slot>
+                </x-backend.form.row>
+                <x-backend.form.row>
+                    <x-backend.text-label for="name">{{ __('backend.name') }}</x-backend.text-label>
+
+                    <x-slot name="input">
+                        <x-backend.text-input id="name" required/>
+                        <x-backend.input-error name="name"/>
+                    </x-slot>
+                </x-backend.form.row>
+                <x-backend.form.row>
+                    <x-backend.text-label for="code">{{ __('backend.code') }}</x-backend.text-label>
+
+                    <x-slot name="input">
+                        <x-backend.text-input id="code" required/>
+                        <x-backend.input-error name="code"/>
+                    </x-slot>
+                </x-backend.form.row>
+            </x-backend.form.divider>
+        </x-backend.card>
+
+        <x-backend.form.actions>
+            <x-backend.anchor href="{{ route('backend.permissions.index') }}" class="font-bold">{{ __('backend.cancel') }}</x-backend.anchor>
+            <x-backend.primary-button>{{ __('backend.save') }}</x-backend.primary-button>
+        </x-backend.form.actions>
+
+    </form>
+</x-backend.app-layout>

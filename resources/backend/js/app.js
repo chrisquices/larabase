@@ -6,7 +6,7 @@ import.meta.glob('./../img/**');
 import * as FilePond from 'filepond';
 import 'filepond/dist/filepond.min.css';
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('livewire:navigated', function () {
 
     setPublicFunctions();
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     addHiddenAttributeToHiddenInputs();
 
-    // initTomSelect();
+    initTomSelect();
 
     initFilePond();
 
@@ -60,10 +60,8 @@ function setPublicFunctions() {
 function setWindowEventListeners() {
     window.addEventListener('confirm', (event) => {
         let modalConfirmText = document.getElementById('modal-confirm-text');
-        let modalConfirmBtn = document.getElementById('modal-confirm-btn');
 
         modalConfirmText.innerText = event.detail.message;
-        modalConfirmBtn.setAttribute('wire:click', event.detail.action);
 
         modalConfirm.showModal();
     });
@@ -116,11 +114,7 @@ function addHiddenAttributeToHiddenInputs() {
 function initTomSelect() {
     document.querySelectorAll('.tom-select').forEach((el) => {
         new TomSelect(el, {
-            allowEmptyOption: true,
-            sortField: {
-                field: "text",
-                direction: "asc"
-            }
+            hideSelected: true,
         });
     });
 }

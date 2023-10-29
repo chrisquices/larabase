@@ -44,7 +44,7 @@ class GlobalSearch extends Component {
                 ->get()
                 ->map(function ($item) {
                     return [
-                        'route' => route('backend.user-management.users.show', $item),
+                        'route' => route('backend.users.show', $item),
                         'name'  => "$item->name $item->last_name"
                     ];
                 });
@@ -61,7 +61,7 @@ class GlobalSearch extends Component {
                 ->get()
                 ->map(function ($item) {
                     return [
-                        'route' => route('backend.user-management.roles.show', $item),
+                        'route' => route('backend.roles.show', $item),
                         'name'  => $item->name
                     ];
                 });

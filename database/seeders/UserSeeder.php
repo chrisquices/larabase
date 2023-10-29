@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
             'locale_id'         => 1,
             'name'              => 'Larabase',
             'last_name'         => 'Admin',
-            'email'             => 'admin@larabase.com',
             'email_verified_at' => now(),
+            'email'             => 'admin@larabase.com',
             'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password
             'preferred_theme'   => 'light',
             'is_active'         => true,

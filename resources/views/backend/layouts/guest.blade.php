@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
+    <meta name="description" content="A Laravel template to get you started with new projects, it includes a beautiful responsive UI and basic functionalities such as complete authentication methods, users, roles and permissions.">
+    <meta name="keywords" content="foundation, laravel, starter kit, template, laravel template, projects, website, responsive, admin, admin panel">
+    <meta name="author" content="Christopher Quiñonez Cespedes">
 
     <title>{{ $title }} | {{ config('app.name', 'Laravel') }}</title>
 

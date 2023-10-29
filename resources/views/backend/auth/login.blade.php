@@ -8,7 +8,7 @@
                 <form action="{{ route('backend.login') }}" method="POST" autocomplete="off" class="space-y-6">
                     @csrf
 
-                    <img class="mx-auto h-12 w-auto" src="{{ Vite::asset('resources/backend/img/logo-alt.svg') }}" alt="larabase">
+                    <img class="mx-auto h-12 w-auto" src="{{ Vite::asset('resources/backend/img/logo-alt.svg') }}" alt="logo">
 
                     <div class="form-control w-full">
                         <x-backend.text-label for="email">{{ __('backend.email') }}</x-backend.text-label>

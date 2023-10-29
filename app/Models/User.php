@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -43,16 +44,15 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     ];
 
     protected $casts = [
-        'is_active'         => 'boolean',
-        'is_admin'          => 'boolean',
+        'is_active' => 'boolean',
+        'is_admin' => 'boolean',
         'email_verified_at' => 'datetime',
-        'deleted_at'        => 'datetime',
+        'deleted_at' => 'datetime',
     ];
 
     protected $appends = [
         'photo_url',
         'photo_thumbnail_url',
-        'email_verified_at_formatted'
     ];
 
     public function locale(): BelongsTo
@@ -70,29 +70,33 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $query->where('is_admin', true);
     }
 
-    public function getPhotoUrlAttribute(): string
+    public function photoUrl(): Attribute
     {
-        $photoExists = $this->getMedia('users')->first();
+        $photo = $this->getMedia('users')->first();
 
-        if ($photoExists) return $photoExists->getUrl();
-
-        return Vite::asset(resource_path('backend/img/photo-placeholder.svg'));
+        return Attribute::make(
+            get: fn() => ($photo)
+                ? $photo->getUrl()
+                : Vite::asset('resources/backend/img/photo-placeholder.svg')
+        );
     }
 
-    public function getPhotoThumbnailUrlAttribute(): string
+    public function photoThumbnailUrl(): Attribute
     {
-        $photoExists = $this->getMedia('users')->first();
+        $photo = $this->getMedia('users')->first();
 
-        if ($photoExists) return $photoExists->getUrl('thumbnail');
-
-        return Vite::asset(resource_path('backend/img/photo-placeholder.svg'));
+        return Attribute::make(
+            get: fn() => ($photo)
+                ? $photo->getUrl('thumbnail')
+                : Vite::asset('resources/backend/img/photo-placeholder.svg')
+        );
     }
 
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('users')
-            ->useFallbackUrl(resource_path('backend/img/photo-placeholder.svg'))
-            ->useFallbackPath(resource_path('backend/img/photo-placeholder.svg'))
+            ->useFallbackUrl('resources/backend/img/photo-placeholder.svg')
+            ->useFallbackPath('resources/backend/img/photo-placeholder.svg')
             ->singleFile();
     }
 

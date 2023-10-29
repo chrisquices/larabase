@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="#">
-    <img src="resources/img/logo-alt.svg" alt="Logo" height="70">
+    <img src="resources/backend/img/logo-alt.svg" alt="Logo" height="70">
   </a>
 </div>
 
@@ -16,30 +16,18 @@
 
 ## Prerequisites
 
-* PHP ^8.2
+* PHP ^8.3
 
 ## Introduction
 
 A Laravel template to get you started with new projects, it includes a beautiful responsive UI and
 basic functionalities such as complete authentication methods, users, roles and permissions.
 
-Larabase lets you code with the knowledge and expertise you already have with Laravel,
-no need to learn or read another documentation.
-
-Code like you would code in any other default Laravel project while saving time on new projects.
-
-## Modules
-
-Modules are installable packages for Larabase they offer a quick and easy way to add functionalities
-to your project. For example, most if not all blogs need CRUD operations for categories, authors,
-posts and comments. In this case you may install the Larabase Blog Module to immediately have 
-those CRUDs ready to go.
-
 ## Installation
 
 1. Download or clone the repository
     ```
-    git clone git@github.com:chrisquices/larabase.git
+    git clone git@github.com:chrisquices/genesis.git
     ```
 
 1. Create your environment file

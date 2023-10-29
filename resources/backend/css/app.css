@@ -9,7 +9,7 @@
 }
 
 .ts-control {
-    @apply !bg-transparent h-10 rounded-xl !pt-2.5 px-[16px] text-slate-500 dark:text-slate-400 !text-sm border-0;
+    @apply !bg-transparent h-10 rounded-xl px-[16px] !text-slate-500 dark:text-slate-400 !text-sm border-0 !leading-6 cursor-pointer;
 
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
     background-position: right 0.5rem center;
@@ -17,32 +17,57 @@
     background-size: 1.5em 1.5em;
 }
 
-.ts-dropdown {
-    @apply bg-base-100 border-slate-300 rounded-xl text-sm text-slate-500 dark:text-slate-400;
+.ts-control input {
+    @apply text-sm text-slate-500 !leading-6;
 }
 
-.ts-dropdown .create:hover, .ts-dropdown .option:hover {
-    @apply bg-base-200 text-slate-500 dark:text-slate-400 text-sm caret-transparent;
+.tom-select .ts-dropdown {
+    @apply border-slate-200 rounded-xl text-sm text-slate-500 dark:text-slate-400 dark:bg-slate-950 dark:border-slate-700;
+
+    border: 1px solid rgb(226, 232, 240); /* border-slate-200 */
 }
 
-.ts-dropdown .option:hover {
-    @apply rounded-xl;
+.tom-select .ts-dropdown .option.active {
+    @apply bg-transparent text-slate-500 dark:text-slate-400;
 }
 
-.ts-dropdown {
-    @apply rounded-xl;
+.tom-select .ts-dropdown [data-selectable].option.selected,
+.tom-select .ts-dropdown [data-selectable].option:hover {
+    @apply !bg-primary text-white text-sm caret-transparent;
 }
 
-.ts-dropdown [data-selectable].option:first-child {
-    @apply rounded-t-xl;
+.tom-select .ts-dropdown [aria-disabled="true"].option.selected.active {
+    @apply bg-slate-300 dark:bg-slate-700 dark:text-slate-400;
 }
 
-.ts-dropdown [data-selectable].option:last-child {
-    @apply rounded-b-xl;
+.tom-select .ts-dropdown .option:first-child {
+    border-top-right-radius: 0.69rem /* 12px */;
+    border-top-left-radius: 0.69rem /* 12px */;
+}
+
+.tom-select .ts-dropdown [data-selectable].option:last-child {
+    border-bottom-right-radius: 0.69rem /* 12px */;
+    border-bottom-left-radius: 0.69rem /* 12px */;
+}
+
+.tom-select .ts-dropdown [aria-disabled="true"] {
+    @apply bg-slate-300 dark:bg-slate-700;
+}
+
+.tom-select {
+    @apply !mt-0;
+}
+
+.tom-select.input-active.dropdown-active {
+    @apply focus:outline-none ring-[1.5px] ring-blue-500;
+}
+
+.tom-select .no-results, .tom-select .ts-dropdown-content > div {
+    @apply px-4 py-1.5;
 }
 
 .filepond--root, .filepond--panel-top, .filepond--panel-center, .filepond--panel-bottom {
-    @apply h-[4.75rem] bg-base-100 dark:bg-base-200 border-slate-300 dark:border-slate-700 w-full rounded-xl border-[1px] focus:border-slate-700 focus:outline-none focus:ring-transparent !mb-0;
+    @apply h-[4.75rem] bg-white dark:bg-base-200 border-slate-200 dark:border-slate-700 w-full rounded-xl border-[1px] focus:outline-none focus:ring-[1.5px] focus:ring-blue-500 !mb-0;
 }
 
 .filepond--drop-label {
@@ -112,6 +137,14 @@ th, td {
     height: 2.5rem;
     min-height: 2.5rem;
 }
-html, h1, h2, h3, h4, h5, h6, p, input, textarea {
+
+html, h1, h2, h3, h4, h5, h6, p, td, th, input, textarea, .tab {
     @apply text-slate-500 dark:text-slate-400;
+}
+
+.tab-bordered {
+    @apply !border-transparent;
+}
+.tab-active {
+    @apply !border-primary/50;
 }

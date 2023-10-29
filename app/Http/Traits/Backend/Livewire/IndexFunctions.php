@@ -2,6 +2,8 @@
 
 namespace App\Http\Traits\Backend\Livewire;
 
+use Livewire\Attributes\Url;
+
 trait IndexFunctions
 {
 
@@ -17,8 +19,8 @@ trait IndexFunctions
     public function init()
     {
         $this->sortDirection = 'asc';
-        $this->recordsPerPage = config('project.pagination.options')[0];
-        $this->recordsPerPageOptions = config('project.pagination.options');
+        $this->recordsPerPage = getSetting('backend_records_per_page');
+        $this->recordsPerPageOptions = array_map('intval', explode(',', getSetting('backend_records_per_page_options')));
         $this->selectedRecord = '';
         $this->selectedRecords = [];
     }

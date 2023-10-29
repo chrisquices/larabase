@@ -8,7 +8,7 @@
                 <form action="{{ route('password.store') }}" method="POST" autocomplete="off" class="space-y-6 text-sm">
                     @csrf
 
-                    <img class="mx-auto h-12 w-auto" src="{{ Vite::asset('resources/backend/img/logo-alt.svg') }}" alt="larabase">
+                    <img class="mx-auto h-12 w-auto" src="{{ Vite::asset('resources/backend/img/logo-alt.svg') }}" alt="logo">
 
                     <input type="hidden" name="token" value="{{ $request->route('token') }}" hidden>
 

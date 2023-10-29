@@ -8,7 +8,7 @@
                 <form action="{{ route('backend.verification.send') }}" method="POST" autocomplete="off" class="space-y-6 text-sm">
                     @csrf
 
-                    <img class="mx-auto h-12 w-auto" src="{{ Vite::asset('resources/backend/img/logo-alt.svg') }}" alt="larabase">
+                    <img class="mx-auto h-12 w-auto" src="{{ Vite::asset('resources/backend/img/logo-alt.svg') }}" alt="logo">
 
                     <p class="font-medium">{{ __('backend.verify_email') }}</p>
 

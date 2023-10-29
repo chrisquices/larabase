@@ -94,6 +94,12 @@ class PermissionSeeder extends Seeder
                 'name'     => 'backend.delete_permissions',
                 'code'     => 'delete_permissions',
             ],
+            // Settings
+            [
+                'category' => 'backend.settings',
+                'name'     => 'backend.edit_settings',
+                'code'     => 'edit_settings',
+            ],
         ];
 
         Permission::insert($permissions);
