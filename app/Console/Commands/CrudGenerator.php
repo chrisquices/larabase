@@ -33,6 +33,14 @@ class CrudGenerator extends Command
     {
         $this->resource = $this->argument('resource');
 
+        $this->assignVariables($this->resource);
+
+        $optionsSelected = $this->promptAvailableOptionsToGenerate();
+
+        $this->generate($optionsSelected);
+    }
+
+    protected function assignVariables($resource) {
         $this->resourceSingularPascal = $this->transform($this->resource, 'singular', 'pascal');
         $this->resourceSingularCamel = $this->transform($this->resource, 'singular', 'camel');
         $this->resourceSingularKebab = $this->transform($this->resource, 'singular', 'kebab');
@@ -44,8 +52,10 @@ class CrudGenerator extends Command
         $this->resourcePluralKebab = $this->transform($this->resource, 'plural', 'kebab');
         $this->resourcePluralSnake = $this->transform($this->resource, 'plural', 'snake');
         $this->resourcePluralTitle = $this->transform($this->resource, 'plural', 'title');
+    }
 
-        $itemsSelected = multiselect(
+    protected function promptAvailableOptionsToGenerate() {
+        $options = multiselect(
             scroll: 20,
             label: 'Which resources should be generated?',
             options: [
@@ -77,29 +87,30 @@ class CrudGenerator extends Command
             required: true,
         );
 
-        $itemsSelected = $this->convertToAssociative($itemsSelected);
+        return $this->convertToAssociative($options);
+    }
 
-        if (isset($itemsSelected['permissions'])) $this->generatePermissions();
-        if (isset($itemsSelected['migration'])) $this->generateMigration();
-        if (isset($itemsSelected['model'])) $this->generateModel();
-        if (isset($itemsSelected['controller'])) $this->generateController();
-        if (isset($itemsSelected['store_request'])) $this->generateStoreRequest();
-        if (isset($itemsSelected['update_request'])) $this->generateUpdateRequest();
-        if (isset($itemsSelected['service'])) $this->generateService();
-        if (isset($itemsSelected['livewire_components'])) $this->generateLivewireComponent();
-        if (isset($itemsSelected['views'])) $this->generateViews();
-        if (isset($itemsSelected['routes'])) $this->generateRoutes();
-        if (isset($itemsSelected['translations'])) $this->generateTranslations();
+    protected function generate($optionsSelected) {
+        if (isset($optionsSelected['permissions'])) $this->generatePermissions();
+        if (isset($optionsSelected['migration'])) $this->generateMigration();
+        if (isset($optionsSelected['model'])) $this->generateModel();
+        if (isset($optionsSelected['controller'])) $this->generateController();
+        if (isset($optionsSelected['store_request'])) $this->generateStoreRequest();
+        if (isset($optionsSelected['update_request'])) $this->generateUpdateRequest();
+        if (isset($optionsSelected['service'])) $this->generateService();
+        if (isset($optionsSelected['livewire_components'])) $this->generateLivewireComponent();
+        if (isset($optionsSelected['views'])) $this->generateViews();
+        if (isset($optionsSelected['routes'])) $this->generateRoutes();
+        if (isset($optionsSelected['translations'])) $this->generateTranslations();
 
         $this->outputAdditionalInformation();
     }
 
+    // Generates permissions for the given resource, such as list_resource, view_resource, create_resource and others
     protected function generatePermissions()
     {
         spin(
             function () {
-                sleep(1);
-
                 $permissions = [
                     [
                         'category' => "backend.$this->resourcePluralSnake",
@@ -136,12 +147,11 @@ class CrudGenerator extends Command
         info('Permissions generated successfully!');
     }
 
+    // Generates a migration for the given resource
     protected function generateMigration()
     {
         spin(
             function () {
-                sleep(1);
-
                 $nextMigrationNumber = $this->getNextMigrationNumber();
                 $stubPath = 'backend/stubs/migration.stub';
                 $filePath = "database/migrations/{$nextMigrationNumber}_create_{$this->resourcePluralSnake}_table.php";
@@ -155,12 +165,11 @@ class CrudGenerator extends Command
         info('Migration generated successfully!');
     }
 
+    // Generates a model for the given resource
     protected function generateModel()
     {
         spin(
             function () {
-                sleep(1);
-
                 $stubPath = 'backend/stubs/model.stub';
                 $filePath = "app/Models/{$this->resource}.php";
 
@@ -174,12 +183,11 @@ class CrudGenerator extends Command
 
     }
 
+    // Generates a controller for the given resource
     protected function generateController()
     {
         spin(
             function () {
-                sleep(1);
-
                 $stubPath = 'backend/stubs/controller.stub';
                 $filePath = "app/Http/Controllers/Backend/{$this->resource}Controller.php";
 
@@ -192,12 +200,11 @@ class CrudGenerator extends Command
         info('Controller generated successfully!');
     }
 
+    // Generates a store request for the given resource
     protected function generateStoreRequest()
     {
         spin(
             function () {
-                sleep(1);
-
                 $stubPath = 'backend/stubs/store-request.stub';
                 $filePath = "app/Http/Requests/Backend/{$this->resource}StoreRequest.php";
 
@@ -210,12 +217,11 @@ class CrudGenerator extends Command
         info('Store request generated successfully!');
     }
 
+    // Generates an update request for the given resource
     protected function generateUpdateRequest()
     {
         spin(
             function () {
-                sleep(1);
-
                 $stubPath = 'backend/stubs/update-request.stub';
                 $filePath = "app/Http/Requests/Backend/{$this->resource}UpdateRequest.php";
 
@@ -228,12 +234,11 @@ class CrudGenerator extends Command
         info('Update request generated successfully!');
     }
 
+    // Generates a service for the given resource
     protected function generateService()
     {
         spin(
             function () {
-                sleep(1);
-
                 $stubPath = 'backend/stubs/service.stub';
                 $filePath = "app/Services/Backend/{$this->resource}Service.php";
 
@@ -246,12 +251,11 @@ class CrudGenerator extends Command
         info('Service generated successfully!');
     }
 
+    // Generates the livewire components for the given resource
     protected function generateLivewireComponent()
     {
         spin(
             function () {
-                sleep(1);
-
                 $stubPath = 'backend/stubs/livewire/app-index.stub';
                 $filePath = "app/Livewire/Backend/{$this->resource}/Index.php";
 
@@ -270,12 +274,11 @@ class CrudGenerator extends Command
         info('Livewire components generated successfully!');
     }
 
+    // Generates the views request for the given resource (index, create, show and edit)
     protected function generateViews()
     {
         spin(
             function () {
-                sleep(1);
-
                 $stubPath = 'backend/stubs/views/index.stub';
                 $filePath = "resources/views/backend/{$this->resourcePluralKebab}/index.blade.php";
 
@@ -303,12 +306,11 @@ class CrudGenerator extends Command
 
     }
 
+    // Generates the routes for the given resource, they are appended at the end of the backend.php file
     protected function generateRoutes()
     {
         spin(
             function () {
-                sleep(1);
-
                 $customRoutes = <<<EOL
 
                     use App\Http\Controllers\Backend\\{$this->resource}Controller;
@@ -333,12 +335,11 @@ class CrudGenerator extends Command
         info('Routes generated successfully!');
     }
 
+    // Generates the translations in english for the given resource, additional inputs need to be manually written
     protected function generateTranslations()
     {
         spin(
             function () {
-                sleep(1);
-
                 $translations = [
                     "{$this->resourceSingularSnake}"                                             => "{$this->resourceSingularTitle}",
                     "{$this->resourcePluralSnake}"                                               => "{$this->resourcePluralTitle}",
@@ -381,12 +382,14 @@ class CrudGenerator extends Command
         info('Translations generated successfully!');
     }
 
+    // Ouputs final messages in the command line
     protected function outputAdditionalInformation()
     {
         info("\nCode generation for {$this->resource} finished successfully \n");
         info("Don't forget to run the new migration!\n");
     }
 
+    // Converts a simple array to an associative array
     function convertToAssociative(array $indexedArray): array
     {
         $associativeArray = [];
@@ -397,6 +400,7 @@ class CrudGenerator extends Command
         return $associativeArray;
     }
 
+    // Generates a file based on the stub and contents needed
     protected function generateFile($resource, $stubPath, $storePath)
     {
         $stubVariables = [
@@ -432,6 +436,7 @@ class CrudGenerator extends Command
         file_put_contents(base_path($storePath), $contents);
     }
 
+    // When generating a file, if the directory where it needs to be generated does not exist, this function creates a directory before generating the file
     protected function makeDirectoryIfNotExists($storePath)
     {
         $directoryPath = pathinfo($storePath)['dirname'];
@@ -441,6 +446,7 @@ class CrudGenerator extends Command
         }
     }
 
+    // Transforms the resource given to the different formats needed to generate new files
     protected function transform($resource, $type, $textCase)
     {
         // split $resource
@@ -472,12 +478,14 @@ class CrudGenerator extends Command
         return $resource;
     }
 
+    // Splits the resource if applicable, for example HealthyDog would be split into Healthy Dog
     protected function splitCamelCase($inputString)
     {
         $parts = preg_split('/(?=[A-Z])/', $inputString);
         return implode(' ', $parts);
     }
 
+    // Calculates the next migration number to be created, this replaces the default timestamp that migrations usually have
     protected function getNextMigrationNumber()
     {
         $migrationFiles = File::glob(database_path('migrations') . '/*_*.php');
