@@ -62,15 +62,3 @@ Route::prefix('settings')->name('settings.')->group(function () {
     Route::get('/', [SettingController::class, 'index'])->name('index');
     Route::patch('/update', [SettingController::class, 'update'])->name('update');
 });
-
-    use App\Http\Controllers\Backend\DogController;
-
-    Route::prefix('dogs')->name('dogs.')->group(function () {
-        Route::get('/', [DogController::class, 'index'])->name('index');
-        Route::get('/create', [DogController::class, 'create'])->name('create');
-        Route::post('/store', [DogController::class, 'store'])->name('store');
-        Route::get('/{dog}', [DogController::class, 'show'])->name('show');
-        Route::get('/{dog}/edit', [DogController::class, 'edit'])->name('edit');
-        Route::patch('/{dog}/update', [DogController::class, 'update'])->name('update');
-        Route::delete('/{dog}/delete', [DogController::class, 'delete'])->name('delete');
-    });
