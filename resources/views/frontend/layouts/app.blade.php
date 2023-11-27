@@ -16,7 +16,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    @vite(['resources/frontend/css/app.css', 'resources/frontend/js/app.js'])
+{{--    @vite(['resources/frontend/css/app.css', 'resources/frontend/js/app.js'])--}}
 
     @livewireStyles
 
