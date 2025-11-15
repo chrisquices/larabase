@@ -28,7 +28,7 @@ However, there is a revamped version called **Foundation**, built with VueJS 3, 
 
 ## Prerequisites
 
-* PHP ^8.3
+* PHP ^8.1
 
 ## Introduction
 
