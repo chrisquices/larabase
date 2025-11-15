@@ -7,6 +7,18 @@
 
 &nbsp;
 
+---
+
+## 📢 New Version Available
+
+This project, **Larabase**, is fully functional and stable.  
+
+However, there is a revamped version called **Foundation**, built with VueJS 3, TypeScript, and Inertia.js.
+
+👉 Check out Foundation: https://github.com/chrisquices/foundation
+
+---
+
 ## Built With
 
 ![Tailwind CSS](https://img.shields.io/static/v1?style=for-the-badge&message=Tailwind+CSS&color=222222&logo=Tailwind+CSS&logoColor=06B6D4&label=)
